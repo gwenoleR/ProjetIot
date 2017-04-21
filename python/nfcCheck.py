@@ -13,8 +13,9 @@ while True:
     try:
         uid = mifare.select()
         dataToSend = {"rfid": uid}
-        r = requests.post("http://172.30.0.221/promo/", dataToSend)
         print(json.dumps(dataToSend))
+        r = requests.post("http://172.30.0.221/promo/", json.dumps(dataToSend))
+
 
     except nxppy.SelectError:
         # SelectError is raised if no card is in the field.
