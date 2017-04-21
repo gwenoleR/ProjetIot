@@ -1,8 +1,8 @@
 {
   "db": {
-    "host": "localhost",
+    "host": "172.30.0.123",
     "user": "root",
-    "password": "",
+    "password": "calendar_bdd",
     "database": "ical"
   }
 }
