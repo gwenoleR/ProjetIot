@@ -15,6 +15,8 @@ while True:
         dataToSend = {"rfid": uid}
         print(json.dumps(dataToSend))
         r = requests.post("http://172.30.0.221/promo/", json.dumps(dataToSend))
+        print(r)
+        print("Send")
 
 
     except nxppy.SelectError:
