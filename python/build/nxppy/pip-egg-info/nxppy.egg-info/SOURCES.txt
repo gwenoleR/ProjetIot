@@ -1,0 +1,11 @@
+MANIFEST.in
+Mifare.c
+Mifare.h
+errors.h
+get_nxpRdLib.sh
+nxppy.c
+setup.cfg
+pip-egg-info/nxppy.egg-info/PKG-INFO
+pip-egg-info/nxppy.egg-info/SOURCES.txt
+pip-egg-info/nxppy.egg-info/dependency_links.txt
+pip-egg-info/nxppy.egg-info/top_level.txt
