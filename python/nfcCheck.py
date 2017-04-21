@@ -6,7 +6,7 @@ import requests
 
 mifare = nxppy.Mifare()
 
-url = "http://172.30.0.221/promo/"
+url = "http://172.30.0.123/promo/"
 
 # Print card UIDs as they are detected
 while True:
