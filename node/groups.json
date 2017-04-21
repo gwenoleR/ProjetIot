@@ -1,0 +1,24 @@
+{
+  "cdpir": {
+    "lemeur": {
+      "tous": "http://ical.imerir.com/PromoLeMeur"
+    },
+    "dessertine": {
+      "tous": "http://ical.imerir.com/PromoDessertine",
+      "groupe1": "http://ical.imerir.com/PromoDessertineG1",
+      "groupe2": "http://ical.imerir.com/PromoDessertineG2",
+      "groupe3": "http://ical.imerir.com/PromoDessertineG3"
+    },
+    "bourgine": {
+      "tous": "http://ical.imerir.com/PromoBourgine",
+      "groupe1": "http://ical.imerir.com/PromoBourgineG1",
+      "groupe2": "http://ical.imerir.com/PromoBourgineG2",
+      "groupe3": "http://ical.imerir.com/PromoBourgineG3"
+    }
+  },
+  "cdsm":{
+    "goa":{
+      "tous" : "http://ical.imerir.com/PromoGoa"
+    }
+  }
+}
