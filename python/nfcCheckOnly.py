@@ -6,19 +6,14 @@ import requests
 
 mifare = nxppy.Mifare()
 
-url = "http://172.30.0.221/promo/"
 
 # Print card UIDs as they are detected
 while True:
     try:
         uid = mifare.select()
-	rfid_str = uid.encode('utf-8')
-        dataToSend = {"rfid": rfid_str}
-	print(dataToSend)
-        r = requests.post(url, data=dataToSend)
-        print(r)
-        print("Send")
-
+        dataToSend = {"rfid": uid}
+        #r = requests.post("http://172.30.0.221/promo/", dataToSend)
+        print(dataToSend)
 
     except nxppy.SelectError:
         # SelectError is raised if no card is in the field.
