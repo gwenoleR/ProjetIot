@@ -2,6 +2,7 @@
 import nxppy
 import time
 import os
+import json
 import requests
 
 mifare = nxppy.Mifare()
@@ -13,7 +14,7 @@ while True:
         uid = mifare.select()
         dataToSend = {"rfid": uid}
         r = requests.post("http://172.30.0.221/promo/", dataToSend)
-        print(dataToSend)
+        print(json.dumps(dataToSend))
 
     except nxppy.SelectError:
         # SelectError is raised if no card is in the field.
