@@ -5,26 +5,25 @@ import time
 
 mifare = nxppy.Mifare()
 
-# db = MySQLdb.connect(host="172.30.0.123:3306",
-#                      user="root",
-#                      passwd="calendar_bdd",
-#                      db="ical")
-#
-# cur = db.cursor()
-#
-# cur.execute("SELECT * FROM user")
-#
-# for row in cur.fetchall():
-#     print row[0]
-#
-# db.close()
-
+ db = MySQLdb.connect(host="172.30.0.123",
+                      user="root",
+                      passwd="calendar_bdd",
+                      db="ical")
 
 # Print card UIDs as they are detected
 while True:
     try:
         uid = mifare.select()
         print(uid)
+
+         cur = db.cursor()
+
+         cur.execute("SELECT * FROM user WHERE rfid = " + uid)
+
+         for row in cur.fetchall():
+             print row[0]
+
+         db.close()
 
 
     except nxppy.SelectError:
