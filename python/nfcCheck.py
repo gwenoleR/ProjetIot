@@ -1,30 +1,19 @@
 #!/usr/bin/python
-import MySQLdb
 import nxppy
 import time
+import os
+import requests
 
 mifare = nxppy.Mifare()
 
- db = MySQLdb.connect(host="172.30.0.123",
-                      user="root",
-                      passwd="calendar_bdd",
-                      db="ical")
 
 # Print card UIDs as they are detected
 while True:
     try:
         uid = mifare.select()
-        print(uid)
-
-         cur = db.cursor()
-
-         cur.execute("SELECT * FROM user WHERE rfid = " + uid)
-
-         for row in cur.fetchall():
-             print row[0]
-
-         db.close()
-
+        dataToSend = {"rfid": uid}
+        r = requests.post("http://172.30.0.221/promo/", dataToSend)
+        print(dataToSend)
 
     except nxppy.SelectError:
         # SelectError is raised if no card is in the field.
