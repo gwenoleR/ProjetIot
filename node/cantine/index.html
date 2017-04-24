@@ -5,6 +5,11 @@
     socket.on('connect', function() {
         socket.emit('my event', {data: 'I\'m connected!'});
     });
+    socket.on('badge', function(data) {
+        console.log("data received : "+data )
+    });
+
+
 </script>
 
 Merci de passer votre badge pour regler votre repas.
