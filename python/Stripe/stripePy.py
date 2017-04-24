@@ -32,17 +32,20 @@ def payement():
 
 @app.route("/login", methods=['POST'])
 def login():
+
     print(request.form['name'])
     print(request.form['password'])
 
     cur.execute("SELECT name, password FROM user WHERE name=\'"+request.form['name']+"\' AND password =\'" + request.form['password']+"\'")
 
     if (len(cur.fetchall()) > 0) :
-        db.close()
         return "OK"
     else :
-        db.close()
         return "unknow credentials"
+
+#@app.route("/creditCompte", methods=['POST'])
+#def creditCompte():
+
 
 
 if __name__ == "__main__":
