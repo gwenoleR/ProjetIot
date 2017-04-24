@@ -17,10 +17,11 @@
 <script>
 
 $(function(){
+
   $("#login_button").on("click", function(event){
 
     console.log("Clicked");
-    $('login-failed').text('');
+    $('#login-failed').text("");
     var username = $("#username").val();
     var password = $("#password").val();
 
@@ -29,25 +30,24 @@ $(function(){
 
     $.ajax({
       type: "POST",
-      url: "http://XPS-GR.local:5000/login",
+      url: "http://172.30.0.123:5000/login",
       data: jQuery.parseJSON(`{ "name" : "${username}", "password" : "${encryptedPass}" }`),
       success : function(){
         console.log("User found");
-        $('login-failed').text('User Found');
+
         $("#username").val("")
         $("#password").val("")
 
       },
       error : function(data){
-        //$("#login-failed").empty();
-        document.getElementById('login-failed').innerHTML = "TETE DE BITE";
-        $("#login-failed").val("Coucou");
-        //$("#login-failed").html("Echec du login");
+
+        $("#login-failed").text("Echec du login");
+
         console.log("An error occured : " + data.statusCode)
 
-        for( e in data){
-          console.log(e)
-        }
+        // for( e in data){
+        //   console.log(e)
+        // }
       }
 
 
@@ -66,19 +66,17 @@ $(function(){
 
   <div class="login-page" id = "menu-login">
         <div class="form">
-            <form class="login-form">
               <fieldset class = "fielset-login">
                 <input id="username" type="text" placeholder="Nom d'utilisateur" />
                 <br>
                 <input id="password" type="password" placeholder="Mot de Passe" />
                 <br>
-                <button id='login_button'>Connexion</button>
+                <button id="login_button">Connexion</button>
               </fieldset>
-            </form>
         </div>
     </div>
 
-    <span id = "login-failed">TEST</span>
+    <p id="login-failed"></p>
 
   <div class = "logo-block">
     <img src="Logo_IMERIR.jpg" alt="Logo" class = "logo-imerir" />
