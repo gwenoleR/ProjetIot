@@ -1,12 +1,12 @@
-from flask import Flask, request
-import stripe
+from flask import Flask, request, render_template, make_response
+import stripe,json
 import MySQLdb
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
 
-db = MySQLdb.connect(host="docker-pi.local",
+db = MySQLdb.connect(host="db",
                      user="root",
                      passwd="calendar_bdd",
                      db="ical")
@@ -43,8 +43,17 @@ def login():
     else :
         return "unknow credentials"
 
-#@app.route("/creditCompte", methods=['POST'])
-#def creditCompte():
+@app.route("/getCredit/<string:name>", methods=['GET'])
+def getCredit(name):
+    cur.execute("SELECT credit FROM user WHERE name=\'"+name+"\'")
+
+    for credit in cur.fetchall() :
+        print credit[0]
+
+    resp = make_response(json.dumps({"credit" : credit[0]}, 200))
+    resp.mimetype = 'application/json'
+
+    return resp
 
 
 

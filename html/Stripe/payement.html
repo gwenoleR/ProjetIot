@@ -11,7 +11,7 @@
     $("#login").on("click", function(event){
       $.ajax({
         type: "POST",
-        url: "http://localhost:5000/login",
+        url: "http://docker-pi.local:5000/login",
         data: jQuery.parseJSON(`{ "name" : "jaques", "password" : "4d261d68f63b1dc4a1cf820e92a7e4a6"  }`),
         success : function(){
           console.log("ok")
