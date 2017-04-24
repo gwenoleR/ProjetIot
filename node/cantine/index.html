@@ -4,10 +4,13 @@
     var socket = io.connect('http://localhost:5000');
     socket.on('connect', function() {
         socket.emit('my event', {data: 'I\'m connected!'});
+
+        socket.on('badge', function(data) {
+            console.log("data received : "+data )
+        });
+
     });
-    socket.on('badge', function(data) {
-        console.log("data received : "+data )
-    });
+
 
 
 </script>
