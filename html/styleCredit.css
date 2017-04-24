@@ -1,0 +1,29 @@
+.nameField{
+  text-align: center;
+}
+
+.creditField{
+  text-align: center;
+}
+
+.form{
+
+  display: block;
+    margin : auto;
+}
+#menu-login {
+  margin-left: auto;
+  margin-right: auto;
+  width: 200;
+  .centrage {text-align: center;}
+
+}
+
+.login-page{
+
+
+  text-align:center;
+  margin-top: 20vh;
+  transform: translateY(-50%);
+
+}
