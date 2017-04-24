@@ -6,7 +6,6 @@ import RPi.GPIO as GPIO
 
 app = Flask(__name__, static_url_path='/home/pi/ProjetIot/node/cantine/')
 CORS(app)
-socketio = SocketIO(app)
 
 db = MySQLdb.connect(host="192.168.0.13",
                      user="root",
