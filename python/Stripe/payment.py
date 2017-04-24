@@ -30,8 +30,10 @@ def payment():
             print c[0]
 
         if (c[0] - 5 < 0) :
-            resp = make_response("Votre compte semble ne plus avoir assez de credit. Merci de le crediter.",403)
-            return resp
+            #resp = make_response("Votre compte semble ne plus avoir assez de credit. Merci de le crediter.",403)
+            return render_template('index.html',
+                                   title='Paiement cantine',
+                                   message="Votre compte semble ne plus avoir assez de credit. Merci de le crediter.")
 
         credit = c[0] - 5
 
@@ -40,7 +42,10 @@ def payment():
         for c in cur.fetchall():
             print c[0]
 
-        resp = make_response(json.dumps({"credit" : c[0]}, 201))
+        #resp = make_response(json.dumps({"credit" : c[0]}, 201))
+        return render_template('index.html',
+                               title='Paiement cantine',
+                               message="Merci et bon appetit. <br>Il vous reste "+c[0]+" euros sur votre carte.")
     except:
         resp = make_response("Erreur lors du paiement", 500)
 
