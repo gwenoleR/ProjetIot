@@ -16,17 +16,6 @@ db = MySQLdb.connect(host="192.168.0.13",
 cur = db.cursor()
 
 @socketio.on('badge')
-def handle_badge(message):
-    print('badge pose : ' + message)
-
-@socketio.on('message')
-def handle_message(message):
-    print('received message: ' + message)
-
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    print('received json: ' + str(json))
-
 @app.route("/", methods=['GET'])
 def index():
     return send_from_directory('/home/pi/ProjetIot/node/cantine/', 'index.html')
