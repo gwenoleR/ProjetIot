@@ -9,7 +9,7 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 
-  <title>Gestion crdes crédits</title>
+  <title>Gestion crédits IMERIR</title>
 
   <link rel="stylesheet" href="styleCredit.css">
 
@@ -46,8 +46,6 @@ $(function(){
     },
     error : function(data){
 
-
-
       console.log("An error occured : " + data.statusCode)
 
     }
@@ -69,18 +67,36 @@ $(function(){
 </script>
 
 <body>
+  <h1 class = "Titre-h1">Gestion crédit IMERIR</h1>
 
   <div class="login-page" id = "menu-login">
         <div class="form">
+          <fieldset id="fieldSet">
 
-                <p id="nameField">NAME_HERE</p>
+          <table id="tableField" style="width: 90%" align="center">
+          <tr>
+            <td>
+              <p id="nameLabel">Nom de l'utilisateur :</p>
+            </td>
+            <td>
+              <p id="nameField"></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label id="creditLabel">Crédit sur le compte (€) :</label>
+            </td>
+            <td>
+              <p id="creditField"></p>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
                 <br>
-                <label class="creditField">CREDIT</label>
-                <label> €</label>
                 <br>
                 <br>
                 <br>
-                <button id="addCreditButton">Ajouter des crédits</button>
+                <button id="addCreditButton" style="vertical-align:middle"><span>Ajouter des crédits</span></button>
 
         </div>
     </div>

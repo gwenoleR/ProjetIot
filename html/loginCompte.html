@@ -8,7 +8,7 @@
 
   <meta charset="utf-8">
 
-  <title>Gestion des comptes IMERIR</title>
+  <title>Login crédit IMERIR</title>
 
   <link rel="stylesheet" href="style.css">
 
@@ -70,21 +70,22 @@ $(function(){
 
 <body>
 
-<h1 class = "Titre-h1">Gestion des comptes utilisateurs IMERIR</h1>
+<h1 class = "Titre-h1">Connexion au compte crédit IMERIR</h1>
 
   <div class="login-page" id = "menu-login">
         <div class="form">
-              <fieldset class = "fielset-login">
+
                 <input id="username" type="text" placeholder="Nom d'utilisateur" />
                 <br>
                 <input id="password" type="password" placeholder="Mot de Passe" />
                 <br>
-                <button id="login_button">Connexion</button>
-              </fieldset>
+                <button id="login_button" class="button" style="vertical-align:middle"><span>Connexion</span></button>
+
         </div>
+        <p id="login-failed"></p>
     </div>
 
-    <p id="login-failed"></p>
+
 
   <div class = "logo-block">
     <img src="Logo_IMERIR.jpg" alt="Logo" class = "logo-imerir" />
