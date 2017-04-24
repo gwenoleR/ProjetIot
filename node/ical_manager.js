@@ -96,6 +96,11 @@ app.post('/promo', function (req, res) {
 });
 
 
+app.get('/addUser', function (req, res) {
+    res.sendfile(__dirname + '/formulaire.html');
+})
+
+
 app.post('/login', function (req, res) {
     body = ''
     post = null
