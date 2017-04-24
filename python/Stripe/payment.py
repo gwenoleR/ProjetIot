@@ -4,7 +4,7 @@ import MySQLdb
 from flask_socketio import SocketIO, send, emit
 from flask_cors import CORS, cross_origin
 
-app = Flask(__name__, host='0.0.0.0:5000',static_url_path='/home/pi/ProjetIot/node/cantine/')
+app = Flask(__name__, static_url_path='/home/pi/ProjetIot/node/cantine/')
 CORS(app)
 socketio = SocketIO(app)
 
