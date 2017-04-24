@@ -23,6 +23,10 @@ def handle_badge(message):
 def handle_message(message):
     print('received message: ' + message)
 
+@socketio.on('my event')
+def handle_my_custom_event(json):
+    print('received json: ' + str(json))
+
 @app.route("/", methods=['GET'])
 def index():
     return send_from_directory('/home/pi/ProjetIot/node/cantine/', 'index.html')
@@ -41,6 +45,7 @@ def payment():
 
         if (c[0] - 5 < 0) :
             resp = make_response("Votre compte semble ne plus avoir assez de credit. Merci de le crediter.",403)
+            return resp
             # return render_template('index.html',
             #                        title='Paiement cantine',
             #                        message="Votre compte semble ne plus avoir assez de credit. Merci de le crediter.")
