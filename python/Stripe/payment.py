@@ -16,16 +16,21 @@ cur = db.cursor()
 
 @app.route("/payment", methods=['POST'])
 def payment():
-    cur.execute("SELECT credit FROM user WHERE rfid=\'"+request.form['rfid']+"\'")
-    for c in cur.fetchall():
-        print c[0]
 
-    credit = c[0] - 5
+    try:
+        cur.execute("SELECT credit FROM user WHERE rfid=\'"+request.form['rfid']+"\'")
 
-    cur.execute("UPDATE user SET credit="+str(credit)+" WHERE rfid=\'"+request.form['rfid']+"\'")
+        for c in cur.fetchall():
+            print c[0]
 
-    resp = make_response("OK", 201)
+        credit = c[0] - 5
 
+        cur.execute("UPDATE user SET credit="+str(credit)+" WHERE rfid=\'"+request.form['rfid']+"\'")
+
+        resp = make_response("OK", 201)
+    except:
+        resp = make_response("Error", 500)
+        
     return resp
 
 
