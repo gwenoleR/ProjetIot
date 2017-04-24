@@ -40,7 +40,7 @@ def payment():
         for c in cur.fetchall():
             print c[0]
 
-        resp = make_response(json.dumps({"credit" : c[0]}, 201)
+        resp = make_response(json.dumps({"credit" : c[0]}, 201))
     except:
         resp = make_response("Erreur lors du paiement", 500)
 
