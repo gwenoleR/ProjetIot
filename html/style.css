@@ -1,0 +1,52 @@
+#menu-login {
+  margin-left: auto;
+  margin-right: auto;
+  width: 200;
+  .centrage {text-align: center;}
+}
+
+.Titre-h1{
+
+  text-align: center;
+
+
+}
+
+
+.login-page{
+
+
+  text-align:center;
+  margin-top: 20vh;
+  transform: translateY(-50%);
+
+}
+
+#login-failed{
+
+  text-align: center;
+  color: red;
+
+}
+
+.fielset-login {
+
+  width: 200px;
+
+  margin: auto;
+
+}
+
+img.logo-imerir{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.logo-imerir{
+
+  align-content: center;
+  height: 150px;
+  width: 150px;
+
+}
