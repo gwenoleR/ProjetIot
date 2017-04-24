@@ -19,14 +19,12 @@ cur = db.cursor()
 def handle_badge(message):
     print('badge pose : ' + message)
 
-@socketio.on('my event')
-def handle_my_custom_event(json):
-    print('received json: ' + str(json))
 
 @app.route("/", methods=['GET'])
 def index():
     return send_from_directory('/home/pi/ProjetIot/node/cantine/', 'index.html')
 
+@socketio.on('badge')
 @app.route("/payment", methods=['POST'])
 def payment():
 
