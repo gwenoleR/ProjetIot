@@ -18,8 +18,8 @@ cur = db.cursor()
 #gpio26 other
 GPIO.setmode(GPIO.BCM)
 
-GPIO.setup(16, GPIO.OUT, initial=GPIO.HIGH)
-GPIO.setup(26, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(16, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(26, GPIO.OUT, initial=GPIO.LOW)
 
 
 @app.route("/", methods=['GET'])
@@ -36,6 +36,10 @@ def payment():
             print c[0]
 
         if (c[0] - 5 < 0) :
+            GPIO.output(16, GPIO.HIGH)
+            sleep(1)
+            GPIO.output(16, GPIO.LOW)
+
             resp = make_response("Votre compte semble ne plus avoir assez de credit. Merci de le crediter.",403)
             return resp
             # return render_template('index.html',
@@ -54,8 +58,14 @@ def payment():
         #                        title='Paiement cantine',
         #                        credit=c[0]
         #                        )
+        GPIO.output(26, GPIO.HIGH)
+        sleep(1)
+        GPIO.output(26, GPIO.LOW)
     except:
         resp = make_response("Error", 500)
+        GPIO.output(26, GPIO.HIGH)
+        sleep(1)
+        GPIO.output(26, GPIO.LOW)
 
     return resp
 
