@@ -1,0 +1,87 @@
+<!doctype html>
+
+<html lang="fr">
+
+<head>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8">
+
+  <title>Gestion des comptes IMERIR</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<script>
+
+$(function(){
+
+  $("#login_button").on("click", function(event){
+
+    console.log("Clicked");
+    $('#login-failed').text("");
+    var username = $("#username").val();
+    var password = $("#password").val();
+
+    var encryptedPass = password;
+    console.log(username)
+
+    $.ajax({
+      type: "POST",
+      url: "http://172.30.0.123:5000/login",
+      data: jQuery.parseJSON(`{ "name" : "${username}", "password" : "${encryptedPass}" }`),
+      success : function(){
+        console.log("User found");
+
+        $("#username").val("")
+        $("#password").val("")
+
+      },
+      error : function(data){
+
+        $("#login-failed").text("Echec du login");
+
+        console.log("An error occured : " + data.statusCode)
+
+        // for( e in data){
+        //   console.log(e)
+        // }
+      }
+
+
+    })
+
+
+  })
+})
+
+
+</script>
+
+<body>
+
+<h1 class = "Titre-h1">Gestion des comptes utilisateurs IMERIR</h1>
+
+  <div class="login-page" id = "menu-login">
+        <div class="form">
+              <fieldset class = "fielset-login">
+                <input id="username" type="text" placeholder="Nom d'utilisateur" />
+                <br>
+                <input id="password" type="password" placeholder="Mot de Passe" />
+                <br>
+                <button id="login_button">Connexion</button>
+              </fieldset>
+        </div>
+    </div>
+
+    <p id="login-failed"></p>
+
+  <div class = "logo-block">
+    <img src="Logo_IMERIR.jpg" alt="Logo" class = "logo-imerir" />
+  </div>
+
+</body>
+
+</html>
