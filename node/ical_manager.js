@@ -84,8 +84,7 @@ app.post('/promo', function (req, res) {
         console.log(post);
         try {
             let rfID = getPromo(post.rfid);
-            let ical = getIcal(rfID);
-            console.log(ical)
+
             res.send(200)
 
 
@@ -129,13 +128,11 @@ function getPromo(rfid) {
     response = null
     try {
         sql_connection.query(
-            "SELECT promotion, groupe, diplome " +
+            "SELECT promotion " +
             "FROM user " +
             "WHERE rfid = ?;", rfid, function (error, results, fields) {
                 response = {}
                 response.promotion = results[0].promotion;
-                response.groupe = results[0].groupe;
-                response.diplome = results[0].diplome;
                 console.log('The solution is: ', response);
 
                 getIcal(response)
@@ -154,7 +151,7 @@ function getPromo(rfid) {
 
 function getIcal(user) {
     let today = new Date();
-    console.log(today)
+    console.log(today);
 
     let icalDay ="<iframe id='cv_if5' src='http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=http%3A%2F%2Fical.imerir.com%2F"+user.promotion+"&theme=BL&ccolor=%23ffffc0&dims=1&gtype=cv_daygrid&gcloseable=0&gnavigable=1&gperiod=day&itype=cv_simpleevent' allowTransparency=true scrolling='no' frameborder=0 height=600 width=250></iframe>"
     let icalWeek = "<iframe id='cv_if5' src='http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=http%3A%2F%2Fical.imerir.com%2F"+user.promotion+"&theme=BL&ccolor=%23ffffc0&dims=1&gtype=cv_daygrid&gcloseable=0&gnavigable=1&gperiod=day7&itype=cv_simpleevent' allowTransparency=true scrolling='no' frameborder=0 height=600 width=800></iframe>"
@@ -165,10 +162,6 @@ function getIcal(user) {
 
 
 
-
-
-//rfid = "0428206A643481"
-//getPromo(rfid)
 
 io.on('connection', function (socket) {
     socket.join('lobby')
@@ -183,7 +176,7 @@ io.on('connection', function (socket) {
     })
 });
 
-
+/*
 credTest = {
     "name": "jaques",
     "password": "jaques"
@@ -209,3 +202,4 @@ function checkCredentials(creds) {
         return response
     }
 }
+*/
