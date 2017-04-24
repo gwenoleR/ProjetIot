@@ -128,13 +128,11 @@ function getPromo(rfid) {
     response = null
     try {
         sql_connection.query(
-            "SELECT promotion, groupe, diplome " +
+            "SELECT promotion " +
             "FROM user " +
             "WHERE rfid = ?;", rfid, function (error, results, fields) {
                 response = {}
                 response.promotion = results[0].promotion;
-                response.groupe = results[0].groupe;
-                response.diplome = results[0].diplome;
                 console.log('The solution is: ', response);
 
                 getIcal(response)
