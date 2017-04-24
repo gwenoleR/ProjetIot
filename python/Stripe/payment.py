@@ -15,6 +15,10 @@ db = MySQLdb.connect(host="192.168.0.13",
 
 cur = db.cursor()
 
+@socketio.on('connect', namespace='/')
+def connect():
+    print ("We have connected to socketio")
+
 @socketio.on('badge')
 @app.route("/", methods=['GET'])
 def index():
