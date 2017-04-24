@@ -22,11 +22,6 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(16, GPIO.OUT, initial=GPIO.LOW)
 GPIO.setup(26, GPIO.OUT, initial=GPIO.LOW)
 
-
-@app.route("/", methods=['GET'])
-def index():
-    return send_from_directory('/home/pi/ProjetIot/node/cantine/', 'index.html')
-
 @app.route("/payment", methods=['POST'])
 def payment():
 
