@@ -28,7 +28,7 @@ def index():
 @app.route("/payment", methods=['POST'])
 def payment():
 
-    emit('badge', json.dumps({'data': 'badge detect' + request.form['rfid']}))
+    emit('badge', json.dumps({'data': 'badge detect' + request.form['rfid']}), broadcast=True)
 
     try:
         cur.execute("SELECT credit FROM user WHERE rfid=\'"+request.form['rfid']+"\'")
