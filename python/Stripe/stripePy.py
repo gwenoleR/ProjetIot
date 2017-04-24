@@ -6,7 +6,7 @@ from flask_cors import CORS, cross_origin
 app = Flask(__name__)
 CORS(app)
 
-db = MySQLdb.connect(host="db",
+db = MySQLdb.connect(host="docker-pi.local",
                      user="root",
                      passwd="calendar_bdd",
                      db="ical")

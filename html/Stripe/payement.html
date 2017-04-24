@@ -21,7 +21,10 @@
         }
       })
     })
-
+    hash = window.location.hash.replace(/^#!/,"")
+    str = hash.substr(1);
+    console.log(str)
+    $("#name").val(str)
 
   })
 </script>
@@ -32,7 +35,7 @@
   <div class="group">
     <label>
       <span>Name</span>
-      <input name="cardholder-name" class="field" placeholder="Jane Doe" />
+      <input name="cardholder-name" class="field" id="name" placeholder="Jane Doe" />
     </label>
     <label>
       <span>Amout</span>
