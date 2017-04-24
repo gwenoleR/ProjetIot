@@ -1,0 +1,47 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Vue App</title>
+</head>
+<body>
+
+<div id="icalDay"></div>
+<div id="icalWeek"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+<form action="">
+    <input id="m" autocomplete="off"/>
+    <button>Send</button>
+</form>
+
+
+
+<script>
+    let socket =io();
+
+    $('form').submit(function () {
+        console.log("sub")
+        socket.emit('rfid', "0428206A643481");
+
+        return false;
+    });
+
+
+    socket.emit('coucou')
+    socket.on('connection', function () {
+        $('#ical').html("coucou")
+    })
+    socket.on('render', function (icalDay, icalWeek) {
+        $('#icalDay').html(icalDay)
+        $('#icalWeek').html(icalWeek)
+
+        console.log('refresh caught')
+    })
+
+
+</script>
+</body>
+</html>
