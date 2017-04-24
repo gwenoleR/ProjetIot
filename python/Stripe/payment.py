@@ -15,9 +15,8 @@ cur = db.cursor()
 
 @app.route("/")
 def index():
-    return render_template('index.html',
-                           title='Paiement cantine',
-                           message="Merci de presenter votre carte.")
+    return render_template('credit.html',
+                           title='Paiement cantine')
 
 
 @app.route("/payment", methods=['POST'])
@@ -43,13 +42,13 @@ def payment():
             print c[0]
 
         #resp = make_response(json.dumps({"credit" : c[0]}, 201))
-        return render_template('index.html',
+        return render_template('success.html',
                                title='Paiement cantine',
-                               message="Merci et bon appetit. <br>Il vous reste "+c[0]+" euros sur votre carte.")
+                               credit=c[0]
+                               )
     except:
-        resp = make_response("Erreur lors du paiement", 500)
+        return render_template('error.html',title='Paiement cantine')
 
-    return resp
 
 
 if __name__ == "__main__":
