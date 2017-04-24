@@ -6,7 +6,7 @@ import requests
 
 mifare = nxppy.Mifare()
 
-url = "http://localhost/payment/"
+url = "http://192.168.0.13:5000/payment/"
 
 # Print card UIDs as they are detected
 while True:
