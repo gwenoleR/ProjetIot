@@ -14,7 +14,7 @@ db = MySQLdb.connect(host="192.168.0.13",
 cur = db.cursor()
 
 
-@app.route("/payment", metods=['POST'])
+@app.route("/payment", methods=['POST'])
 def payment():
     cur.execute("SELECT credit FROM user WHERE rfid=\'"+request.form['rfid']+"\'")
 
