@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, make_response, send_from_directory
 import stripe,json
 import MySQLdb
-from flask_socketio import SocketIO, send, emit
+from flask.ext.socketio import SocketIO, send, emit
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__, static_url_path='/home/pi/ProjetIot/node/cantine/')
@@ -15,20 +15,31 @@ db = MySQLdb.connect(host="192.168.0.13",
 
 cur = db.cursor()
 
-@socketio.on('connect', namespace='/')
-def connect():
-    print ("We have connected to socketio")
 
-@socketio.on('badge')
+@socketio.on('my event', namespace='/test')
+def test_message(message):
+    emit('my response', {'data': message['data']})
+
+@socketio.on('my broadcast event', namespace='/test')
+def test_message(message):
+    emit('my response', {'data': message['data']}, broadcast=True)
+
+@socketio.on('connect', namespace='/test')
+def test_connect():
+    emit('my response', {'data': 'Connected'})
+
+@socketio.on('disconnect', namespace='/test')
+def test_disconnect():
+    print('Client disconnected')
+
 @app.route("/", methods=['GET'])
 def index():
     return send_from_directory('/home/pi/ProjetIot/node/cantine/', 'index.html')
 
-@socketio.on('badge')
 @app.route("/payment", methods=['POST'])
 def payment():
 
-    socketio.emit('badge',json.dumps({'data': 'badge detect' + request.form['rfid']}))
+    #socketio.emit('badge',json.dumps({'data': 'badge detect' + request.form['rfid']}))
 
     try:
         cur.execute("SELECT credit FROM user WHERE rfid=\'"+request.form['rfid']+"\'")
