@@ -3,6 +3,7 @@ import stripe,json
 import MySQLdb
 from flask_cors import CORS, cross_origin
 import RPi.GPIO as GPIO
+import time
 
 app = Flask(__name__, static_url_path='/home/pi/ProjetIot/node/cantine/')
 CORS(app)
@@ -37,7 +38,7 @@ def payment():
 
         if (c[0] - 5 < 0) :
             GPIO.output(16, GPIO.HIGH)
-            sleep(1)
+            time.sleep(1)
             GPIO.output(16, GPIO.LOW)
 
             resp = make_response("Votre compte semble ne plus avoir assez de credit. Merci de le crediter.",403)
@@ -59,12 +60,12 @@ def payment():
         #                        credit=c[0]
         #                        )
         GPIO.output(26, GPIO.HIGH)
-        sleep(1)
+        time.sleep(1)
         GPIO.output(26, GPIO.LOW)
     except:
         resp = make_response("Error", 500)
         GPIO.output(26, GPIO.HIGH)
-        sleep(1)
+        time.sleep(1)
         GPIO.output(26, GPIO.LOW)
 
     return resp
