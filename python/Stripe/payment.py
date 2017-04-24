@@ -17,7 +17,7 @@ cur = db.cursor()
 @app.route("/payment", methods=['POST'])
 def payment():
     cur.execute("SELECT credit FROM user WHERE rfid=\'"+request.form['rfid']+"\'")
-    c = cur.fetchall():
+    c = cur.fetchall()
 
     credit = c[0] - 5
 
