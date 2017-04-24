@@ -4,6 +4,28 @@
 
   <link rel="stylesheet" type="text/css" href="payement.css">
 </head>
+
+
+<script>
+  $(function(){
+    $("#login").on("click", function(event){
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:5000/login",
+        data: jQuery.parseJSON(`{ "name" : "jaques", "password" : "4d261d68f63b1dc4a1cf820e92a7e4a6"  }`),
+        success : function(){
+          console.log("ok")
+        },
+        error: function(){
+          console.log("error")
+        }
+      })
+    })
+
+
+  })
+</script>
+
 <body>
 
 <form>
@@ -13,8 +35,8 @@
       <input name="cardholder-name" class="field" placeholder="Jane Doe" />
     </label>
     <label>
-      <span>Phone</span>
-      <input class="field" placeholder="(123) 456-7890" type="tel" />
+      <span>Amout</span>
+      <input class="field" placeholder="10.00" name="cardholder-amount" type="number" />
     </label>
   </div>
   <div class="group">
@@ -23,7 +45,8 @@
       <div id="card-element" class="field"></div>
     </label>
   </div>
-  <button type="submit">Pay $25</button>
+  <button type="submit">Pay</button>
+  <button type="button" id="login">Login</button>
   <div class="outcome">
     <div class="error"></div>
     <div class="success">

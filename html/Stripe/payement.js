@@ -33,7 +33,10 @@ function setOutcome(result) {
     successElement.querySelector('.token').textContent = result.token.id;
     successElement.classList.add('visible');
 
-    post('http://localhost:5000/sendPayement', {stripeToken : result.token.id})
+    var form = document.querySelector('form');
+    amountValue = form.querySelector('input[name=cardholder-amount]').value
+
+    post('http://localhost:5000/sendPayement', {stripeToken : result.token.id, amount : amountValue})
   }
   else if (result.error) {
     errorElement.textContent = result.error.message;
