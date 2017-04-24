@@ -36,7 +36,7 @@ def payment():
         credit = c[0] - 5
 
         cur.execute("UPDATE user SET credit="+str(credit)+" WHERE rfid=\'"+request.form['rfid']+"\'")
-        cur.execute("SELECT credit FROM user where rfid=\'"+request.form['rfid']+"\'"))
+        cur.execute("SELECT credit FROM user where rfid=\'"+request.form['rfid']+"\'")
         for c in cur.fetchall():
             print c[0]
 
