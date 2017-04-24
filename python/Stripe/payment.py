@@ -18,8 +18,9 @@ cur = db.cursor()
 #gpio26 other
 GPIO.setmode(GPIO.BCM)
 
-GPIO.output(16, 1)
-GPIO.output(26, 1)
+GPIO.setup(16, GPIO.OUT, initial=GPIO.HIGH)
+GPIO.setup(26, GPIO.OUT, initial=GPIO.HIGH)
+
 
 @app.route("/", methods=['GET'])
 def index():
