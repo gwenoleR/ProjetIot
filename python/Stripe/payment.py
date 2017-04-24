@@ -1,10 +1,10 @@
-from flask import Flask, request, render_template, make_response
+from flask import Flask, request, render_template, make_response, send_from_directory
 import stripe,json
 import MySQLdb
 from flask_socketio import SocketIO, send, emit
 from flask_cors import CORS, cross_origin
 
-app = Flask(__name__)
+app = Flask(__name__, host='0.0.0.0:5000',static_url_path='/home/pi/ProjetIot/node/cantine/')
 CORS(app)
 socketio = SocketIO(app)
 
@@ -22,6 +22,10 @@ def handle_badge(message):
 @socketio.on('my event')
 def handle_my_custom_event(json):
     print('received json: ' + str(json))
+
+@app.route("/", methods=['GET'])
+def index():
+    return send_from_directory('/home/pi/ProjetIot/node/cantine/', 'index.html')
 
 @app.route("/payment", methods=['POST'])
 def payment():
