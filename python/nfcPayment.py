@@ -12,9 +12,9 @@ url = "http://192.168.0.13:5000/payment"
 while True:
     try:
         uid = mifare.select()
-	rfid_str = uid.encode('utf-8')
+        rfid_str = uid.encode('utf-8')
         dataToSend = {"rfid": rfid_str}
-	print(dataToSend)
+        print(dataToSend)
         r = requests.post(url, data=dataToSend)
         print(r)
         print("Send")
