@@ -16,6 +16,8 @@ cur = db.cursor()
 
 #gpio16 red
 #gpio26 other
+GPIO.setmode(GPIO.BOARD)
+
 GPIO.output(16, 1)
 GPIO.output(26, 1)
 
