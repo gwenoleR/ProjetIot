@@ -18,15 +18,18 @@ def payement():
     stripe.api_key = "sk_test_Eg1a245Otded9ALwN9tNpdtl"
 
     token = request.form['stripeToken']
+    name = request.form['name']
     amount = int(request.form['amount'])*100
     print(int(request.form['amount'])*100)
 
     charge = stripe.Charge.create(
         amount=amount,
         currency="eur",
-        description="Payement cantine",
+        description="Payment cantine",
         source=token
     )
+
+    addCredit(name, amount/100)
     #redirect to gestionCompte.html
     return "Payment accepted"
 
@@ -55,6 +58,17 @@ def getCredit(name):
 
     return resp
 
+def addCredit(name, credit):
+
+    cur.execute("SELECT credit FROM user WHERE name=\'"+name+"\'")
+    for c in cur.fetchall():
+        print c[0]
+
+    credit = c[0] + credit
+
+    cur.execute("UPDATE user SET credit=\'"+str(credit)+"\' WHERE name=\'"+name+"\'")
+
+    return "ok"
 
 
 if __name__ == "__main__":
