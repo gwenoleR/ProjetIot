@@ -13,6 +13,12 @@ db = MySQLdb.connect(host="192.168.0.13",
 
 cur = db.cursor()
 
+@app.route("/")
+def index():
+    return render_template('index.html',
+                           title='Paiement cantine',
+                           message="Merci de presenter votre carte.")
+
 
 @app.route("/payment", methods=['POST'])
 def payment():
@@ -23,14 +29,21 @@ def payment():
         for c in cur.fetchall():
             print c[0]
 
+        if (c[0] - 5 < 0) :
+            resp = make_response("Votre compte semble ne plus avoir assez de credit. Merci de le crediter.",403)
+            return resp
+
         credit = c[0] - 5
 
         cur.execute("UPDATE user SET credit="+str(credit)+" WHERE rfid=\'"+request.form['rfid']+"\'")
+        cur.execute("SELECT credit FROM user where rfid=\'"+request.form['rfid']+"\'"))
+        for c in cur.fetchall():
+            print c[0]
 
-        resp = make_response("OK", 201)
+        resp = make_response(json.dumps({"credit" : c[0]}, 201)
     except:
-        resp = make_response("Error", 500)
-        
+        resp = make_response("Erreur lors du paiement", 500)
+
     return resp
 
 
