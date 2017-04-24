@@ -19,6 +19,9 @@ cur = db.cursor()
 def handle_badge(message):
     print('badge pose : ' + message)
 
+@socketio.on('message')
+def handle_message(message):
+    print('received message: ' + message)
 
 @app.route("/", methods=['GET'])
 def index():
