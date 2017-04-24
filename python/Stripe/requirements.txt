@@ -2,3 +2,4 @@ Flask
 stripe
 MySQL-python
 flask-cors
+flask-socketio
