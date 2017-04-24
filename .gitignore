@@ -4,3 +4,4 @@
 node/.idea/
 node/node_modules/
 /node/params.json
+/python/venv/
