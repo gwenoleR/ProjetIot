@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" type="text/css" href="payement.css">
+</head>
+<body>
+
+<form>
+  <div class="group">
+    <label>
+      <span>Name</span>
+      <input name="cardholder-name" class="field" placeholder="Jane Doe" />
+    </label>
+    <label>
+      <span>Phone</span>
+      <input class="field" placeholder="(123) 456-7890" type="tel" />
+    </label>
+  </div>
+  <div class="group">
+    <label>
+      <span>Card</span>
+      <div id="card-element" class="field"></div>
+    </label>
+  </div>
+  <button type="submit">Pay $25</button>
+  <div class="outcome">
+    <div class="error"></div>
+    <div class="success">
+      Success! Your Stripe token is <span class="token"></span>
+    </div>
+  </div>
+</form>
+</body>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script src="payement.js"></script>
