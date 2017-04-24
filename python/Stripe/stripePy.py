@@ -1,8 +1,10 @@
 from flask import Flask, request
 import stripe
 import MySQLdb
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
 
 db = MySQLdb.connect(host="docker-pi.local",
                      user="root",
