@@ -2,7 +2,8 @@
  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 <script type="text/javascript" charset="utf-8">
-    var socket = io.connect('http://localhost:5000');
+    var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+    //var socket = io.connect('http://localhost:5000');
     socket.on('connect', function() {
         socket.emit('my event', {data: 'I\'m connected!'});
 
@@ -11,8 +12,6 @@
         });
 
     });
-
-
 
 </script>
 
