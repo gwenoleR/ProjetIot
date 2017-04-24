@@ -1,0 +1,31 @@
+version: '2'
+services:
+    db:
+        build: ./bdd/
+        ports:
+         - "3306:3306"
+        volumes:
+         - ./bdd/data:/var/lib/mysql
+        env_file:
+         - ./bdd/bdd-variables.env
+    ical-manager:
+        build: ./node/
+        ports:
+         - "80:80"
+        volumes:
+         - ./node:/code
+        depends_on:
+         - db
+        links:
+         - db:db
+    stripe:
+        build: ./python/Stripe/
+        ports:
+         - "5000:5000"
+        volumes:
+         - ./python/Stripe:/code
+        depends_on:
+         - db
+        links:
+         - db:db
+

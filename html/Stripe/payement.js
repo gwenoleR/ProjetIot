@@ -37,7 +37,7 @@ function setOutcome(result) {
     var amountValue = form.querySelector('input[name=cardholder-amount]').value
     var name = form.querySelector('input[name=cardholder-name]').value
 
-    post('http://localhost:5000/sendPayement', {stripeToken : result.token.id, amount : amountValue, name : name})
+    post('http://docker-pi.local:5000/sendPayement', {stripeToken : result.token.id, amount : amountValue, name : name})
   }
   else if (result.error) {
     errorElement.textContent = result.error.message;

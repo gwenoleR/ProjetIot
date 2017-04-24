@@ -3,5 +3,7 @@
 .idea/
 node/.idea/
 node/node_modules/
-/node/params.json
-/python/venv/
+node/params.json
+python/venv/
+bdd/data/
+bdd/bdd-variables.env
