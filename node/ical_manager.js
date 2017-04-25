@@ -70,9 +70,9 @@ app.post('/promo', function (req, res) {
     req.on('end', function () {
         post = qs.parse(body);
         console.log(post);
-
-
-        res.send(getPromo(post.rfid))
+        let rfid = getPromo(post.rfid)
+        console.log('getPRomo sent :'+rfid)
+        res.send(rfid)
     });
 });
 
@@ -131,7 +131,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('rfid', function (rfid) {
-        getPromo(rfid+'A')
+        getPromo(rfid)
     })
 });
 
