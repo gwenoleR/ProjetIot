@@ -71,10 +71,8 @@ app.post('/promo', function (req, res) {
         post = qs.parse(body);
         console.log(post);
 
-        let rfID = getPromo(post.rfid);
-        if (!rfID) res.send(404)
-        else res.send(200)
 
+        res.send(getPromo(post.rfid))
     });
 });
 
@@ -98,18 +96,18 @@ function getPromo(rfid) {
                     console.log('The solution is: ', response);
 
                     getIcal(response)
-                    return response;
+                    return 200;
                 } catch (e) {
-                    console.log('404')
-                    return false
+                    console.log('Error : sending 404');
+                    return 404;
                 }
             }
         );
 
 
     } catch (e) {
-        console.log(e)
-        return "error"
+        console.log("Error SQL !")
+        return 404
     }
 }
 

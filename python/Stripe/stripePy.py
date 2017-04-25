@@ -41,10 +41,17 @@ def login():
 
     cur.execute("SELECT name, password FROM user WHERE name=\'"+request.form['name']+"\' AND password =\'" + request.form['password']+"\'")
 
+    for u in cur.fetchall():
+        print(u[0])
+
+    print(u[0])
+
     if (len(cur.fetchall()) > 0) :
-        return "OK"
+        resp = make_response('OK', 200)
+        return resp
     else :
-        return "unknow credentials"
+        resp = make_response('Unknow user', 400)
+        return resp
 
 @app.route("/getCredit/<string:name>", methods=['GET'])
 def getCredit(name):
