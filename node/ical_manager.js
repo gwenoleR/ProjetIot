@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/login', function (req, res) {
-    res.sendfile('/home/pi/ProjetIot/html/loginCompte.html');
+    res.sendfile(__dirname + '/html/loginCompte.html');
 });
 
 //manage user creation
