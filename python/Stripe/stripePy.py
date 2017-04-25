@@ -36,17 +36,17 @@ def payement():
 @app.route("/login", methods=['POST'])
 def login():
 
-    print(request.form['name'])
-    print(request.form['password'])
+    # print(request.form['name'])
+    # print(request.form['password'])
 
     cur.execute("SELECT name, password FROM user WHERE name=\'"+request.form['name']+"\' AND password =\'" + request.form['password']+"\'")
 
     for u in cur.fetchall():
         print(u[0])
+        print(u[1])
 
-    print(u[0])
 
-    if (len(cur.fetchall()) > 0) :
+    if (len(u[0]) > 0) :
         resp = make_response('OK', 200)
         return resp
     else :
