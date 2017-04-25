@@ -9,14 +9,6 @@ let ical = require('ical')
 let parameters = require('./params.json')
 let groups = require('./groups.json');
 
-/*
- //VUE DEV
- //global.Vue = require('vue')
-
- let fs = require('fs')
- let path = require('path')
-
- let layout = fs.readFileSync('./index.html', 'utf8');*/
 
 
 //FIN VUE DEV
@@ -84,12 +76,8 @@ app.post('/promo', function (req, res) {
         console.log(post);
         try {
             let rfID = getPromo(post.rfid);
-
             res.send(200)
-
-
         } catch (e) {
-            console.log(e);
             res.send(404)
         }
     });
@@ -101,31 +89,6 @@ app.get('/addUser', function (req, res) {
 })
 
 
-app.post('/login', function (req, res) {
-    body = ''
-    post = null
-    req.on('data', function (data) {
-        body += data;
-    });
-
-    req.end(function () {
-        post = qs.parse(body);
-        console.log("Credentials received :" + post)
-        try {
-            //checkCredentials(post.rfid);
-            res.send(200)
-        } catch (e) {
-            console.log(e);
-            res.send(403)
-        }
-    })
-})
-
-
-
-
-/*let toto = checkCredentials(credTest)
- console.log("toto : " + toto)*/
 
 
 //returns the promotion of a given rfid
@@ -136,16 +99,20 @@ function getPromo(rfid) {
             "SELECT promotion " +
             "FROM user " +
             "WHERE rfid = ?;", rfid, function (error, results, fields) {
-                response = {}
-                response.promotion = results[0].promotion;
-                console.log('The solution is: ', response);
+                try {
+                    response = {}
+                    response.promotion = results[0].promotion;
+                    console.log('The solution is: ', response);
 
-                getIcal(response)
-                return response;
+                    getIcal(response)
+                    return response;
+                } catch (e) {
+                    console.log('404')
+                    return e
+                }
             }
         );
-        //sql_connection.end();
-        //io.to('lobby').emit('refresh', 'ical')
+
 
     } catch (e) {
         console.log(e)
@@ -166,8 +133,6 @@ function getIcal(user) {
 }
 
 
-
-
 io.on('connection', function (socket) {
     socket.join('lobby')
     socket.on('coucou', function () {
@@ -175,36 +140,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('rfid', function (rfid) {
-        let user = getPromo(rfid)
-
-
+        getPromo(rfid)
     })
 });
 
-/*
-credTest = {
-    "name": "jaques",
-    "password": "jaques"
-}
-
-
-function checkCredentials(creds) {
-    response = null;
-    try {
-        sql_connection.query(
-            "SELECT name " +
-            "FROM user " +
-            "WHERE name = ? AND password = ?;", [creds.name, creds.password], function (error, results, fields) {
-                response = results[0].name;
-                console.log('The solution is: ', response);
-            }
-        );
-        //sql_connection.end();
-        return response;
-    } catch (e) {
-        response = false;
-        console.log(e)
-        return response
-    }
-}
-*/
