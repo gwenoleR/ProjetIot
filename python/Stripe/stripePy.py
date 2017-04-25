@@ -42,7 +42,9 @@ def login():
     cur.execute("SELECT name, password FROM user WHERE name=\'"+request.form['name']+"\' AND password =\'" + request.form['password']+"\'")
 
     for u in cur.fetchall():
-        print u[0]
+        print(u[0])
+
+    print(u[0])
 
     if (len(cur.fetchall()) > 0) :
         resp = make_response('OK', 200)
