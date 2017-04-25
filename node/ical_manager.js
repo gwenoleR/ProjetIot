@@ -106,8 +106,8 @@ function getPromo(rfid) {
 
 
     } catch (e) {
-        console.log(e)
-        return "error"
+        console.log("Error SQL !")
+        return 404
     }
 }
 
