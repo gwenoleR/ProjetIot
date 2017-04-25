@@ -24,4 +24,4 @@ Permet de stocker les utilisateurs avec leur tag RFID et leur credit.
 
 ## Credits
 
-Coder avec :heart: par Les 4 Fantastiques
+Code avec :heart: par Les 4 Fantastiques
