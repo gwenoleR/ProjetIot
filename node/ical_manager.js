@@ -28,6 +28,9 @@ app.get('/', function (req, res) {
     res.sendfile(__dirname + '/index.html');
 });
 
+app.get('/login', function (req, res) {
+    res.sendfile('/home/pi/ProjetIot/html/loginCompte.html');
+});
 
 //manage user creation
 app.post('/addUser', function (req, res) {
