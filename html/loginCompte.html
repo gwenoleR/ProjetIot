@@ -94,3 +94,135 @@ $(function(){
 </body>
 
 </html>
+
+<style>
+#menu-login {
+  margin-left: auto;
+  margin-right: auto;
+  width: 200;
+  .centrage {text-align: center;}
+}
+
+.Titre-h1{
+
+  text-align: center;
+  color: white;
+  font: normal 275% 'century gothic', arial, sans-serif;
+  text-shadow: 2px 2px 2px grey;
+
+
+}
+
+html {
+  margin:0;
+  padding:0;
+  background: url(background.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+.login-page{
+
+
+  text-align:center;
+  margin-top: 20vh;
+  transform: translateY(-50%);
+
+}
+
+#username{
+
+  width: 400px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  font: 100% arial;
+
+}
+
+#password{
+
+  width: 400px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  font: 100% arial;
+}
+
+
+
+#login_button{
+  display: inline-block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+#login_button span{
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+#login_button span:after{
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+#login_button:hover span {
+  padding-right: 25px;
+}
+
+#login_button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#login-failed{
+
+  text-align: center;
+  color: white;
+  font: normal 200% 'century gothic', arial, sans-serif;
+
+
+}
+
+.fielset-login {
+
+
+  max-width:500px;
+  padding:16px;
+
+  margin: auto;
+  border: 1px solid #5d5d5d;
+
+}
+
+img.logo-imerir{
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.logo-imerir{
+
+  align-content: center;
+  height: 150px;
+  width: 150px;
+
+}
+
+</style>
