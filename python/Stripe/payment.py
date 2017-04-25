@@ -8,7 +8,7 @@ import time
 app = Flask(__name__, static_url_path='/home/pi/ProjetIot/node/cantine/')
 CORS(app)
 
-db = MySQLdb.connect(host="192.168.0.13",
+db = MySQLdb.connect(host="172.30.0.123",
                      user="root",
                      passwd="calendar_bdd",
                      db="ical")
@@ -24,7 +24,7 @@ GPIO.setup(26, GPIO.OUT, initial=GPIO.LOW)
 
 @app.route("/payment", methods=['POST'])
 def payment():
-
+	
     try:
         cur.execute("SELECT credit FROM user WHERE rfid=\'"+request.form['rfid']+"\'")
 
@@ -59,9 +59,9 @@ def payment():
         GPIO.output(26, GPIO.LOW)
     except:
         resp = make_response("Error", 500)
-        GPIO.output(26, GPIO.HIGH)
+        GPIO.output(16, GPIO.HIGH)
         time.sleep(1)
-        GPIO.output(26, GPIO.LOW)
+        GPIO.output(16, GPIO.LOW)
 
     return resp
 
