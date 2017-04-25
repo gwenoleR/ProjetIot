@@ -101,7 +101,7 @@ function getPromo(rfid) {
                     return response;
                 } catch (e) {
                     console.log('404')
-                    return null
+                    return false
                 }
             }
         );
