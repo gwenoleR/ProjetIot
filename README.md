@@ -22,6 +22,6 @@ Interface utilisateur pour gerer son compte :
 
 Permet de stocker les utilisateurs avec leur tag RFID et leur credit.
 
-## Credit
+## Credits
 
-Coder avec :heart: pour les 4 fantastiques
+Coder avec :heart: par Les 4 Fantastiques
