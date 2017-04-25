@@ -10,10 +10,6 @@ let parameters = require('./params.json')
 let groups = require('./groups.json');
 
 
-
-//FIN VUE DEV
-
-
 console.log("Lancement du serveur...")
 server.listen(80);
 console.log("Serveur ok.")
@@ -74,12 +70,11 @@ app.post('/promo', function (req, res) {
     req.on('end', function () {
         post = qs.parse(body);
         console.log(post);
-        try {
-            let rfID = getPromo(post.rfid);
-            res.send(200)
-        } catch (e) {
-            res.send(404)
-        }
+
+        let rfID = getPromo(post.rfid);
+        if (!rfID) res.send(404)
+        else res.send(200)
+
     });
 });
 
@@ -87,8 +82,6 @@ app.post('/promo', function (req, res) {
 app.get('/addUser', function (req, res) {
     res.sendfile(__dirname + '/formulaire.html');
 })
-
-
 
 
 //returns the promotion of a given rfid
@@ -108,7 +101,7 @@ function getPromo(rfid) {
                     return response;
                 } catch (e) {
                     console.log('404')
-                    return e
+                    return null
                 }
             }
         );
@@ -125,8 +118,8 @@ function getIcal(user) {
     let today = new Date();
     console.log(today);
 
-    let icalDay ="<iframe id='cv_if5' src='http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=http%3A%2F%2Fical.imerir.com%2F"+user.promotion+"&theme=BL&ccolor=%23ffffc0&dims=1&gtype=cv_daygrid&gcloseable=0&gnavigable=1&gperiod=day&itype=cv_simpleevent' allowTransparency=true scrolling='no' frameborder=0 height=600 width=250></iframe>"
-    let icalWeek = "<iframe id='cv_if5' src='http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=http%3A%2F%2Fical.imerir.com%2F"+user.promotion+"&theme=BL&ccolor=%23ffffc0&dims=1&gtype=cv_daygrid&gcloseable=0&gnavigable=1&gperiod=day7&itype=cv_simpleevent' allowTransparency=true scrolling='no' frameborder=0 height=600 width=800></iframe>"
+    let icalDay = "<iframe id='cv_if5' src='http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=http%3A%2F%2Fical.imerir.com%2F" + user.promotion + "&theme=BL&ccolor=%23ffffc0&dims=1&gtype=cv_daygrid&gcloseable=0&gnavigable=1&gperiod=day&itype=cv_simpleevent' allowTransparency=true scrolling='no' frameborder=0 height=600 width=250></iframe>"
+    let icalWeek = "<iframe id='cv_if5' src='http://cdn.instantcal.com/cvir.html?id=cv_nav5&file=http%3A%2F%2Fical.imerir.com%2F" + user.promotion + "&theme=BL&ccolor=%23ffffc0&dims=1&gtype=cv_daygrid&gcloseable=0&gnavigable=1&gperiod=day7&itype=cv_simpleevent' allowTransparency=true scrolling='no' frameborder=0 height=600 width=800></iframe>"
 
     io.to('lobby').emit('render', icalDay, icalWeek)
 
@@ -140,7 +133,7 @@ io.on('connection', function (socket) {
     });
 
     socket.on('rfid', function (rfid) {
-        getPromo(rfid)
+        getPromo(rfid+'A')
     })
 });
 
