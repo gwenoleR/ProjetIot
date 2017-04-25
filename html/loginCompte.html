@@ -40,7 +40,6 @@ $(function(){
       url: "http://docker-pi.local:5000/login",
       data: jQuery.parseJSON(`{ "name" : "${username}", "password" : "${encryptedPass}" }`),
       success : function(){
-
         console.log("User found");
         OuvrirPageCredit(username);
 
@@ -54,6 +53,9 @@ $(function(){
 
         console.log("An error occured : " + data.statusCode)
 
+        // for( e in data){
+        //   console.log(e)
+        // }
       }
 
 
