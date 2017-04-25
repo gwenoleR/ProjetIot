@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <meta charset="utf-8">
+
+  <title>Login crédit IMERIR</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<script>
+
+function OuvrirPageCredit(P_name){
+
+  var url = "gestionCompte.html#" + P_name;
+  document.location.href=url;
+}
+
+
+$(function(){
+
+  $("#login_button").on("click", function(event){
+
+    console.log("Clicked");
+    $('#login-failed').text("");
+    var username = $("#username").val();
+    var password = $("#password").val();
+
+    var encryptedPass = password;
+    console.log(username)
+
+    $.ajax({
+      type: "POST",
+      url: "http://docker-pi.local:5000/login",
+      data: jQuery.parseJSON(`{ "name" : "${username}", "password" : "${encryptedPass}" }`),
+      success : function(){
+        console.log("User found");
+        OuvrirPageCredit(username);
+
+        $("#username").val("")
+        $("#password").val("")
+
+      },
+      error : function(data){
+
+        $("#login-failed").text("Echec du login");
+
+        console.log("An error occured : " + data.statusCode)
+
+        // for( e in data){
+        //   console.log(e)
+        // }
+      }
+
+
+    })
+
+
+  })
+})
+
+
+</script>
+
+<body>
+
+<h1 class = "Titre-h1">Connexion au compte crédit IMERIR</h1>
+
+  <div class="login-page" id = "menu-login">
+        <div class="form">
+
+                <input id="username" type="text" placeholder="Nom d'utilisateur" />
+                <br>
+                <input id="password" type="password" placeholder="Mot de Passe" />
+                <br>
+                <button id="login_button" class="button" style="vertical-align:middle"><span>Connexion</span></button>
+
+        </div>
+        <p id="login-failed"></p>
+    </div>
+
+
+
+  <div class = "logo-block">
+    <img src="Logo_IMERIR.jpg" alt="Logo" class = "logo-imerir" />
+  </div>
+
+</body>
+
+</html>

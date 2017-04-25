@@ -2,3 +2,8 @@ Flask
 stripe
 MySQL-python
 flask-cors
+flask-socketio
+gevent
+gevent-websocket
+GPIO
+RPi.GPIO

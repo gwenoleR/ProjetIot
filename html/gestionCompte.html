@@ -4,84 +4,103 @@
 
 <head>
 
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-
   <meta charset="utf-8">
 
-  <title>Gestion des comptes IMERIR</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="style.css">
+
+  <title>Gestion crédits IMERIR</title>
+
+  <link rel="stylesheet" href="styleCredit.css">
+
+
 
 </head>
 
 <script>
 
+function OuvrirPageCredit(P_name){
+
+  var url = "Stripe/payement.html#" + P_name;
+  document.location.href=url;
+}
+
 $(function(){
-
-  $("#login_button").on("click", function(event){
-
-    console.log("Clicked");
-    $('#login-failed').text("");
-    var username = $("#username").val();
-    var password = $("#password").val();
-
-    var encryptedPass = password;
-    console.log(username)
-
-    $.ajax({
-      type: "POST",
-      url: "http://172.30.0.123:5000/login",
-      data: jQuery.parseJSON(`{ "name" : "${username}", "password" : "${encryptedPass}" }`),
-      success : function(){
-        console.log("User found");
-
-        $("#username").val("")
-        $("#password").val("")
-
-      },
-      error : function(data){
-
-        $("#login-failed").text("Echec du login");
-
-        console.log("An error occured : " + data.statusCode)
-
-        // for( e in data){
-        //   console.log(e)
-        // }
-      }
+//function nomUser() {
 
 
-    })
+  hash = window.location.hash.replace(/^#\!/,"")
+  str = hash.substr(1);
+  console.log(str);
+
+  $('#nameField').text(str);
+
+  $.ajax({
+    type: "GET",
+    url: "http://docker-pi.local:5000/getCredit/" + str,
+    success : function(data){
+      console.log("Coucou");
+      console.log(data)
+      $('.creditField').text(data.credit);
+
+    },
+    error : function(data){
+
+      console.log("An error occured : " + data.statusCode)
+
+    }
 
 
   })
+
+  $("#addCreditButton").on("click", function(event){
+
+    OuvrirPageCredit(str);
+
+
+  })
+
 })
+
 
 
 </script>
 
 <body>
-
-<h1 class = "Titre-h1">Gestion des comptes utilisateurs IMERIR</h1>
+  <h1 class = "Titre-h1">Gestion crédit IMERIR</h1>
 
   <div class="login-page" id = "menu-login">
         <div class="form">
-              <fieldset class = "fielset-login">
-                <input id="username" type="text" placeholder="Nom d'utilisateur" />
+          <fieldset id="fieldSet">
+
+          <table id="tableField" style="width: 90%" align="center">
+          <tr>
+            <td>
+              <p id="nameLabel">Nom de l'utilisateur :</p>
+            </td>
+            <td>
+              <p id="nameField"></p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label id="creditLabel">Crédit sur le compte (€) :</label>
+            </td>
+            <td>
+              <p id="creditField"></p>
+            </td>
+          </tr>
+        </table>
+      </fieldset>
                 <br>
-                <input id="password" type="password" placeholder="Mot de Passe" />
                 <br>
-                <button id="login_button">Connexion</button>
-              </fieldset>
+                <br>
+                <br>
+                <button id="addCreditButton" style="vertical-align:middle"><span>Ajouter des crédits</span></button>
+
         </div>
     </div>
 
-    <p id="login-failed"></p>
-
-  <div class = "logo-block">
-    <img src="Logo_IMERIR.jpg" alt="Logo" class = "logo-imerir" />
-  </div>
 
 </body>
-
 </html>
