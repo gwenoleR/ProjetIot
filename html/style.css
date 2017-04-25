@@ -18,7 +18,7 @@
 html {
   margin:0;
   padding:0;
-  background: url(canigou.jpg) no-repeat center center fixed;
+  background: url(background.jpg) no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -96,7 +96,7 @@ html {
 #login-failed{
 
   text-align: center;
-  color: black;
+  color: white;
   font: normal 200% 'century gothic', arial, sans-serif;
 
 
