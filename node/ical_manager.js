@@ -72,8 +72,7 @@ app.post('/promo', function (req, res) {
         console.log(post);
 
         let rfID = getPromo(post.rfid);
-        if (!rfID) res.send(404)
-        else res.send(200)
+        res.send(rfID)
 
     });
 });
@@ -98,10 +97,10 @@ function getPromo(rfid) {
                     console.log('The solution is: ', response);
 
                     getIcal(response)
-                    return response;
+                    return 200;
                 } catch (e) {
                     console.log('404')
-                    return false
+                    return 404
                 }
             }
         );
