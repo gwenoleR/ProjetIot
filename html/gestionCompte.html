@@ -26,7 +26,7 @@ function OuvrirPageCredit(P_name){
 }
 
 $(function(){
-//function nomUser() {
+
 
 
   hash = window.location.hash.replace(/^#\!/,"")
@@ -39,9 +39,9 @@ $(function(){
     type: "GET",
     url: "http://docker-pi.local:5000/getCredit/" + str,
     success : function(data){
-      console.log("Coucou");
+
       console.log(data)
-      $('.creditField').text(data.credit);
+      $('#creditField').text(data.credit);
 
     },
     error : function(data){
